@@ -23,7 +23,7 @@ npm run dev
 ## Step 4: Connect
 When the window opens:
 1. Username: `David` (or whatever you want)
-2. Server: `ws://44.222.101.125:5555` (default - AWS)
+2. Server: `ws://relay.rangerplex.com:5555` (default)
 3. Click **Connect**
 
 ## Step 5: Chat!

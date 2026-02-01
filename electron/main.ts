@@ -400,6 +400,24 @@ function createWindow() {
         win?.webContents.send('main-process-message', (new Date).toLocaleString())
     })
 
+    // 🔒 Content Security Policy
+    session.defaultSession.webRequest.onHeadersReceived((details, callback) => {
+        callback({
+            responseHeaders: {
+                ...details.responseHeaders,
+                'Content-Security-Policy': [
+                    "default-src 'self';" +
+                    " script-src 'self' 'unsafe-inline';" +
+                    " style-src 'self' 'unsafe-inline';" +
+                    " img-src 'self' data: https: http:;" +
+                    " connect-src 'self' ws: wss: https: http:;" +
+                    " font-src 'self' data:;" +
+                    " media-src 'self' https: http:;"
+                ]
+            }
+        })
+    })
+
     // 📻 RANGER RADIO: Add User-Agent header for SomaFM streams (fixes 403 errors)
     session.defaultSession.webRequest.onBeforeSendHeaders(
         { urls: ['*://*.somafm.com/*', '*://somafm.com/*'] },
@@ -1150,7 +1168,15 @@ ipcMain.handle('filetransfer:checksum', async (_, filePath: string) => {
     try {
         const crypto = require('crypto')
         const fileFs = require('fs')
-        const resolvedPath = require('path').resolve(filePath)
+        const pathMod = require('path')
+        const resolvedPath = pathMod.resolve(filePath)
+
+        // Path traversal protection: only allow files within home directory or app directory
+        const homeDir = require('os').homedir()
+        const appDir = pathMod.dirname(__dirname)
+        if (!resolvedPath.startsWith(homeDir) && !resolvedPath.startsWith(appDir)) {
+            return { success: false, error: 'Access denied: path outside allowed directories' }
+        }
 
         if (!fileFs.existsSync(resolvedPath)) {
             return { success: false, error: `File not found: ${filePath}` }

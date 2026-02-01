@@ -183,8 +183,8 @@ npm run build          # Production build
 
 1. Launch RangerChat Lite
 2. Enter relay URL:
-   - AWS: `ws://44.222.101.125:5555`
-   - M3 Pro: `ws://64.43.137.153:5555`
+   - Primary: `ws://relay.rangerplex.com:5555`
+   - Fallback: `ws://relay2.rangerplex.com:5555`
    - Local: `ws://localhost:5555`
 3. Enter auth token if required
 
@@ -266,7 +266,7 @@ npm install
 ### App won't connect to relay
 
 - Check relay URL in Settings > Network & Servers
-- Try the fallback server: `ws://64.43.137.153:5555`
+- Try the fallback server: `ws://relay2.rangerplex.com:5555`
 - Check if port 5555 is blocked by firewall
 
 ---

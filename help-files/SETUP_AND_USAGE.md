@@ -32,7 +32,7 @@ RangerChat Lite is a **standalone desktop chat client** that connects to the Ran
 - **Frontend**: React + TypeScript + Vite
 - **Backend**: Electron (desktop wrapper)
 - **Protocol**: WebSocket (relay-based P2P)
-- **Server**: AWS relay at `ws://44.222.101.125:5555`
+- **Server**: Relay at `ws://relay.rangerplex.com:5555`
 
 ---
 
@@ -157,7 +157,7 @@ When you first open RangerChat Lite, you'll see:
 │  Username: [RangerUser____]     │
 │                                 │
 │  Server URL:                    │
-│  [ws://44.222.101.125:5555]     │
+│  [ws://relay.rangerplex.com:5555] │
 │                                 │
 │         [Connect]               │
 │                                 │
@@ -172,9 +172,9 @@ When you first open RangerChat Lite, you'll see:
 
 **Step 2: Choose Server**
 
-**Option A: AWS Relay (Internet - Default)**
+**Option A: RangerPlex Relay (Internet - Default)**
 ```
-ws://44.222.101.125:5555
+ws://relay.rangerplex.com:5555
 ```
 - Connects to public relay server
 - Works from anywhere with internet
@@ -274,12 +274,12 @@ System: Connection error
 
 **Check internet connection:**
 ```powershell
-ping 44.222.101.125
-# Should show: Reply from 44.222.101.125
+ping relay.rangerplex.com
+# Should show: Reply from relay server
 ```
 
 **Try different server:**
-- AWS: `ws://44.222.101.125:5555` ✅ Tested working
+- Primary: `ws://relay.rangerplex.com:5555` ✅ Tested working
 - Local: `ws://192.168.1.35:5555` (only if on same network)
 
 **Check Windows Firewall:**
@@ -446,7 +446,7 @@ Based on `voice-chat.cjs` infrastructure:
 ### WebSocket Protocol Flow
 
 ```
-1. Client connects → ws://44.222.101.125:5555
+1. Client connects → ws://relay.rangerplex.com:5555
 2. Server sends → { type: 'welcome', ... }
 3. Client sends → { type: 'register', address, nickname, channel, ... }
 4. Server sends → { type: 'registered', ... }
@@ -538,7 +538,7 @@ Before reporting issues, verify:
 - [ ] TypeScript compiles (`npx tsc --noEmit` shows no errors)
 - [ ] Internet connection working
 - [ ] Firewall allows Electron app
-- [ ] Using correct server URL (AWS: `ws://44.222.101.125:5555`)
+- [ ] Using correct server URL (`ws://relay.rangerplex.com:5555`)
 
 ---
 

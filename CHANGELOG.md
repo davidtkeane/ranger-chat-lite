@@ -190,12 +190,11 @@ If you previously installed from `rangerplex-ai`:
 - Future: Option A will allow everyone to become relay nodes with proper controls
 
 ### Network Configuration
-- **M3 Pro Fallback Server**: Configured at `ws://64.43.137.153:5555`
-- **Multi-Node Architecture**: Support for 4 main relay nodes:
-  - AWS Primary (☁️): `44.222.101.125:5555`
-  - M3 Pro (💻): `64.43.137.153:5555`
-  - M4 Max (🦾): `64.43.137.153:5556` (port forward required)
-  - MSI Vector (🎮): `64.43.137.153:5557` (port forward required)
+- **Fallback Relay Server**: Configured with secondary relay
+- **Multi-Node Architecture**: Support for multiple relay nodes:
+  - Primary (☁️): `relay.rangerplex.com:5555`
+  - Fallback (💻): `relay2.rangerplex.com:5555`
+  - Additional nodes configurable via Settings
 - **Port Forwarding Guide**: Multiple machines on same public IP using different external ports
 
 ### Documentation
@@ -731,7 +730,7 @@ If you previously installed from `rangerplex-ai`:
 - Web Audio API for microphone capture and playback
 - Audio data encoded as Int16 PCM, sent as base64 over WebSocket
 - Echo cancellation and noise suppression enabled
-- Same relay server (44.222.101.125:5555) - compatible with voice-chat.cjs
+- Same relay server (relay.rangerplex.com:5555) - compatible with voice-chat.cjs
 - Theme-aware styling (Matrix green, Tron cyan)
 
 ### Note

@@ -419,17 +419,17 @@ interface ServerNode {
 
 const SERVER_NODES: ServerNode[] = [
     {
-        name: 'AWS Primary',
-        url: 'ws://44.222.101.125:5555',
+        name: 'RangerPlex Primary',
+        url: 'ws://relay.rangerplex.com:5555',
         type: 'main',
-        description: 'Primary relay server (AWS Cloud)',
+        description: 'Primary relay server (Cloud)',
         icon: '☁️'
     },
     {
-        name: 'M3 Pro Fallback',
-        url: 'ws://64.43.137.153:5555',
+        name: 'Fallback Relay',
+        url: 'ws://relay2.rangerplex.com:5555',
         type: 'fallback',
-        description: 'Fallback relay server (David\'s M3 Pro)',
+        description: 'Fallback relay server',
         icon: '💻'
     }
 ]

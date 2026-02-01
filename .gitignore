@@ -27,3 +27,8 @@ npm-debug.log*
 # TypeScript cache
 *.tsbuildinfo
 .claude/
+
+# Security: never commit keys
+*.pem
+*.key
+.personal/
